@@ -32,6 +32,8 @@
 *.app
 
 .vscode/*
+linux/.vscode/*
+windows/.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
