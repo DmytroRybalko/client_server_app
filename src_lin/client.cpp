@@ -61,9 +61,6 @@ int main(void)
         cout << "Connection to Server established successfully" << endl;
     }
 
-    // Call a user function from the library.
-    user_library::printMessage("Client is preparing a message.");
-
     // Exchange text data between Client and Server. Disconnection if a client sends "xxx"
     vector<char> clientBuff(BUFF_SIZE), servBuff(BUFF_SIZE);  // Creation of buffers for sending and receiving data
     short packet_size = 0;  // The size of sending / receiving packet in bytes

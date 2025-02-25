@@ -10,15 +10,10 @@
 #include <vector>
 #include <cstring>
 #include <algorithm>
-#include "user_library.hpp" //"../include/user_library.hpp"
+#include "user_library.hpp"
+
 
 using namespace std;
-
-// find position of the last character in buffer
-int last_position(const std::vector<char>& buffer, const char symbol = '\0') 
-{
-	return distance(buffer.begin(), find(buffer.begin(), buffer.end(), symbol));
-}
 
 
 int main(void)
@@ -101,12 +96,6 @@ int main(void)
 
         cout << "Client connected with IP address " << clientIP << endl;
     }
-
-    // For demonstration, call a user function from the library.
-    user_library::printMessage("Server is processing client data.");
-    // Use the user library function
-    string msg = user_library::createMessage(3, 4);
-    cout << "Server use auxiliar function: " << msg << std::endl;
     
     // Exchange text data between Server and Client. Disconnection if a client sends "xxx"
     vector<char> servBuff(BUFF_SIZE), clientBuff(BUFF_SIZE);  // Creation of buffers for sending and receiving data
@@ -116,28 +105,10 @@ int main(void)
         packet_size = recv(ClientConn, servBuff.data(), servBuff.size(), 0);  // Receiving packet from client. Program is waiting (system pause) until receive
         cout << "Client's message: " << servBuff.data() << endl;
 
-		// here we add functionality to send message to client
-		// swap data between buffers
-    	clientBuff.swap(servBuff);
+        // Add functionality to send message to client
+        user_library::server_insert_name(clientBuff, servBuff);
 
-        cout << "Your (host) message: ";
-		fgets(servBuff.data(), servBuff.size(), stdin);
-        //cin.getline(servBuff.data(), servBuff.size());
-		//fgets(clientBuff.data(), clientBuff.size(), stdin);
-
-		// find position of the last character in server and insert space symbol: ";
-		clientBuff[last_position(clientBuff)] = ' ';
-
-		// copy data from client buffer into server buffer to the position after space symbol
-	    copy(
-			servBuff.begin(),
-			servBuff.begin() + last_position(servBuff),
-			clientBuff.begin() + last_position(clientBuff)
-		);
-
-		cout << "Full message: " << clientBuff.data() << endl;		
-
-		// finished adding functionality to send message to client
+        // finished adding functionality to send message to client
 
         // Check whether server would like to stop chatting
         if (clientBuff[0] == 'x' && clientBuff[1] == 'x' && clientBuff[2] == 'x') {
@@ -162,3 +133,4 @@ int main(void)
 
     return 0;
 }
+
