@@ -104,6 +104,9 @@ int main(void)
 
     // For demonstration, call a user function from the library.
     user_library::printMessage("Server is processing client data.");
+    // Use the user library function
+    string msg = user_library::createMessage(3, 4);
+    cout << "Server use auxiliar function: " << msg << std::endl;
     
     // Exchange text data between Server and Client. Disconnection if a client sends "xxx"
     vector<char> servBuff(BUFF_SIZE), clientBuff(BUFF_SIZE);  // Creation of buffers for sending and receiving data

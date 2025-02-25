@@ -21,7 +21,9 @@ else()
 endif()
 
 # Build the user library.
-add_library(user_library STATIC ${SRC_DIR}/user_library.cpp)
+add_library(user_library STATIC
+    ${SRC_DIR}/user_library.cpp
+    ${SRC_DIR}/auxiliary_functions.cpp)
 
 # Create the server executable.
 add_executable(server ${SRC_DIR}/server.cpp)
@@ -37,5 +39,7 @@ set_target_properties(client PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_
 
 #target_include_directories(server PUBLIC "${PROJECT_SOURCE_DIR}/include")
 
+# Optionally, add the tests subdirectory.
+add_subdirectory(tests)
 
 
