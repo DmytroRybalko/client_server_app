@@ -10,6 +10,7 @@
 #include <vector>
 #include <cstring>
 #include <algorithm>
+#include "user_library.hpp" //"../include/user_library.hpp"
 
 using namespace std;
 
@@ -101,6 +102,9 @@ int main(void)
         cout << "Client connected with IP address " << clientIP << endl;
     }
 
+    // For demonstration, call a user function from the library.
+    user_library::printMessage("Server is processing client data.");
+    
     // Exchange text data between Server and Client. Disconnection if a client sends "xxx"
     vector<char> servBuff(BUFF_SIZE), clientBuff(BUFF_SIZE);  // Creation of buffers for sending and receiving data
     short packet_size = 0;  // The size of sending / receiving packet in bytes

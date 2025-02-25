@@ -30,6 +30,11 @@
 *.exe
 *.out
 *.app
+server
+client
+
+/build/
+/build/*
 
 .vscode/*
 linux/.vscode/*

@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <vector>
 #include <cstring>
+#include "user_library.hpp"
 
 using namespace std;
 
@@ -59,6 +60,9 @@ int main(void)
     } else {
         cout << "Connection to Server established successfully" << endl;
     }
+
+    // Call a user function from the library.
+    user_library::printMessage("Client is preparing a message.");
 
     // Exchange text data between Client and Server. Disconnection if a client sends "xxx"
     vector<char> clientBuff(BUFF_SIZE), servBuff(BUFF_SIZE);  // Creation of buffers for sending and receiving data
