@@ -9,7 +9,21 @@ In your test source file (for example, tests/test_user_library.cpp), include bot
 */
 
 int main() {
-    // Test a function from my_library that uses helper functions.
+    
+    // Test sum_two_numbers function
+    std::vector<char> clientBuff(100), servBuff(100);
+    
+    std::cout << "Enter string like 123+23: " << std::endl;
+    fgets(servBuff.data(), servBuff.size(), stdin);
+    
+    user_library::sum_two_numbers(clientBuff, servBuff);
+    
+    return 0;
+}
+
+
+/* Base working code
+// Test a function from my_library that uses helper functions.
     std::string msg = user_library::createMessage(5, 7);
     std::cout << "User library test message: " << msg << std::endl;
     assert(msg.find("12") != std::string::npos);
@@ -20,23 +34,4 @@ int main() {
     assert(result == 7);
 
     std::cout << "All tests passed." << std::endl;
-    return 0;
-}
-
-// base working code
-/* 
-int main() {
-    // Call a function from your user library to test it.
-    std::string msg = user_library::createMessage(5, 7);
-    std::cout << "Test message: " << msg << std::endl;
-
-    // You could add checks/assertions here to automatically verify results.
-    if (msg.find("12") != std::string::npos) {
-        std::cout << "User library test passed." << std::endl;
-        return 0;
-    } else {
-        std::cerr << "User library test failed." << std::endl;
-        return 1;
-    }
-}
- */
+*/
