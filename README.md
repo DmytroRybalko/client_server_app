@@ -1,5 +1,3 @@
-# client_server_app
-
 # Client-Server Application
 
 This project is a simple client-server application that allows a client to communicate with a server. The server provides a menu of options for the client to choose from and processes the client's requests accordingly.
