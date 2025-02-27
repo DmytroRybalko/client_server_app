@@ -89,5 +89,54 @@ namespace user_library {
 
     }
 
+    // Server's function that get string of numbers and return result due to math operation
+    void do_math_operation(std::vector<char> &clientBuff, std::vector<char> &servBuff)
+    {
+        // Get last position of the buffer
+        const int last_pos = last_position(servBuff);
+
+        // Check if the character before the last position is a newline character
+        (servBuff[last_pos - 1] == '\n') ? servBuff[last_pos - 1] = '\0' : servBuff[last_pos] = '\0';
+
+        // Recognize math operation in char vector (+, -, *, /)
+        const std::vector <char> mathOperands {'+', '-', '*', '/'};
+        const char symbol = *find_first_of(servBuff.begin(), servBuff.end(), mathOperands.begin(), mathOperands.end());
+
+        // Get position of the math operation
+        const int posMathOperation = last_position(servBuff, symbol);
+
+        // Save characters for the first number (before the math operation)
+        std::vector<char> firstNumberChar(posMathOperation);
+        copy(
+            servBuff.begin(),
+            servBuff.begin() + posMathOperation,
+            firstNumberChar.begin()
+            );
+
+        // Save characters for the second number (after the math operation)
+        std::vector<char> secondNumberChar(last_pos - posMathOperation - 2);
+        copy(
+            servBuff.begin() + posMathOperation + 1,
+            servBuff.begin() + last_pos,
+            secondNumberChar.begin()
+            );
+        
+        // Apply math operation
+        auto firstNumber = parse_digit_from_char(firstNumberChar);
+        auto secondNumber = parse_digit_from_char(secondNumberChar);
+        //std::cout << "Result of switch math operation: " << apply_math_operation(firstNumber, secondNumber, symbol) << endl;
+        
+        // Copy result to client buffer
+        auto result = apply_math_operation(firstNumber, secondNumber, symbol);
+        
+        std::string str = std::to_string(result); // convert integer to string
+        
+        fill(clientBuff.begin(), clientBuff.end(), '\0'); // clear client buffer
+        
+        copy(str.begin(), str.end(), clientBuff.begin()); // copy result to client buffer
+        
+        std::cout << "Sum of first and second number: " << clientBuff.data() << std::endl;
+
+    }
         // Additional function implementations...
 }

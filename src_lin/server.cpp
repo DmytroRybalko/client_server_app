@@ -107,9 +107,11 @@ int main(void)
 
         // Add functionality to send message to client
         //user_library::server_insert_name(clientBuff, servBuff);
-        user_library::sum_two_numbers(clientBuff, servBuff);
+        //user_library::sum_two_numbers(clientBuff, servBuff);
+        user_library::do_math_operation(clientBuff, servBuff);
         //cout << "Your (host) message: ";
         //fgets(clientBuff.data(), clientBuff.size(), stdin);
+        
         // finished adding functionality to send message to client
 
         // Check whether server would like to stop chatting

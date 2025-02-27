@@ -27,3 +27,4 @@ int parse_digit_from_char(const std::vector<char>& buffer)
     }
     return result;
 }
+

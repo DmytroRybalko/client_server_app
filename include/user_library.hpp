@@ -24,6 +24,13 @@ namespace user_library {
     // Output: result of the math operation 13+45=58
 
     void sum_two_numbers(std::vector<char> &clientBuff, std::vector<char> &servBuff);
+
+    
+    // Server's function that get string of numbers and return result due to math operation
+    // Input: vector of characters with numbers and math operation +,-,*,/ 13+45
+    // Output: result of the math operation: 58 (13+45=58)
+    void do_math_operation(std::vector<char> &clientBuff, std::vector<char> &servBuff);
+    
 }
 
 #endif // USER_LIBRARY_HPP
